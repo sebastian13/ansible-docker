@@ -14,7 +14,11 @@ docker__login_become_user: "{{ docker__users | first | d('root') }}"
 docker__registries: []
 
 docker__default_daemon_json: |
-  "log-driver": "journald"
+  "log-driver": "journald",
+  "default-address-pools":
+  [
+    {"base":"172.17.0.0/16","size":24}
+  ]
 
 docker__daemon_json: ""
 

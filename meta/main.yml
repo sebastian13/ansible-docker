@@ -1,9 +1,9 @@
 ---
 
 galaxy_info:
-  namespace: "nickjj"
+  namespace: "sebastian13"
   role_name: "docker"
-  author: "Nick Janetakis"
+  author: "Sebastian Plocek"
   description: "Install and configure Docker / Docker Compose."
   license: "MIT"
   min_ansible_version: "2.10.0"

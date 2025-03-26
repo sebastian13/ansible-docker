@@ -1,5 +1,42 @@
 # Changelog
 
+## v2.5.0
+
+*Released: July 30th 2024*
+
+- Explicitly install the Docker CLI and rootless extras so they get updated
+- Use the full Python binary path for `ansible_python_interpreter`
+
+## v2.4.0
+
+*Released: September 11th 2023*
+
+- Use `/etc/apt/keyrings` instead of `/etc/apt/trusted.gpg.d` for Docker's GPG key
+
+## v2.3.0
+
+*Released: September 10th 2023*
+
+- Remove `docker__edition` default variable since `ce` is the only choice, `ee` is long gone
+- Skip installing `docker-compose` v1 by default (you can still install it if you enable it)
+- Refactor handling APT repository GPG key to fix deprecation warnings
+- Officially support Debian 12 (Bookworm)
+
+## v2.2.0
+
+*Released: August 26th 2022*
+
+- Add support for installing Docker Compose v2 (with pinning support)
+- Fix a bug where changing the daemon JSON options didn't restart Docker
+- Fix a bug where you couldn't write out empty config files
+- Allow pinning Docker version without needing to prefix the version with `5:`
+- Enable BuildKit by default
+- Add retries to all `apt` module calls to make them more resilient to failure
+- Officially support Ubuntu 22.04 LTS and Debian 11
+- Officially drop support for Ubuntu 18.04 LTS and Debian 9 (although they still work)
+- Bump minimum Ansible version to 2.10.0 to start using collection namespaces
+- Refactor a few internals and use a handler for reloading the systemd daemon
+
 ## v2.1.0
 
 *Released: January 23rd 2021*

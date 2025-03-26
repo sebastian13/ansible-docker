@@ -93,6 +93,7 @@
       - "docker-ce-rootless-extras"
       - "docker-compose-plugin"
     state: "{{ docker__state }}"
+  notify: ["Restart Docker"]
 
 - name: Install Python packages
   ansible.builtin.pip:

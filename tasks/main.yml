@@ -1,7 +1,7 @@
 ---
 
 - name: Remove old preference control file
-  file:
+  ansible.builtin.file:
     path: "/etc/apt/preferences.d/docker-ce.pref"
     state: "absent"
 

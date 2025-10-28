@@ -1,5 +1,18 @@
 # Changelog
 
+## v2.5.2
+
+*Released: October 19th 2025*
+
+- Fix Ansible 12 compatibility by updating conditionals to use proper boolean evaluation
+- Add `community.docker` as a collection dependency
+
+## v2.5.1
+
+*Released: June 18th 2025*
+
+- Document official Ubuntu 24.04 LTS support (it was always supported and worked)
+
 ## v2.5.0
 
 *Released: July 30th 2024*

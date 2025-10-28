@@ -1,5 +1,4 @@
 ---
-
 galaxy_info:
   namespace: "sebastian13"
   role_name: "docker"
@@ -11,8 +10,8 @@ galaxy_info:
   platforms:
     - name: "Ubuntu"
       versions:
-        - "focal"
         - "jammy"
+        - "noble"
     - name: "Debian"
       versions:
         - "bullseye"
@@ -26,3 +25,6 @@ galaxy_info:
     - "system"
 
 dependencies: []
+
+collections:
+  - "community.docker"

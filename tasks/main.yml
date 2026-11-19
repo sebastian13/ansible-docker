@@ -94,6 +94,32 @@
     state: "{{ docker__state }}"
   notify: ["Restart Docker"]
 
+# After a distribution upgrade (e.g. Debian 12 -> 13, Python 3.11 -> 3.13) the virtualenv's
+# interpreter points to the new Python while pip and all packages remain in lib/python3.11.
+# ansible.builtin.pip only creates a missing virtualenv, it does not repair a broken one.
+- name: Check for an existing Python virtualenv
+  ansible.builtin.stat:
+    path: "{{ docker__pip_virtualenv }}"
+  register: docker__pip_virtualenv_dir
+
+# Fails as well if bin/python3 is a dangling symlink to a removed interpreter
+- name: Check if the Python virtualenv is usable
+  ansible.builtin.command:
+    cmd: "{{ docker__pip_virtualenv }}/bin/python3 -c 'import pip'"
+  register: docker__pip_virtualenv_check
+  changed_when: false
+  failed_when: false
+  check_mode: false
+  when: docker__pip_virtualenv_dir.stat.exists
+
+- name: Remove broken Python virtualenv (recreated below)
+  ansible.builtin.file:
+    path: "{{ docker__pip_virtualenv }}"
+    state: absent
+  when:
+    - docker__pip_virtualenv_dir.stat.exists
+    - docker__pip_virtualenv_check.rc != 0
+
 - name: Install Python packages
   ansible.builtin.pip:
     name: >
